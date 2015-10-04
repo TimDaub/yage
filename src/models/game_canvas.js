@@ -23,9 +23,6 @@ export default class GameCanvas {
 
   // handles the window object's resize event
   handleEvent({ target: { innerHeight, innerWidth }}) {
-    this.domNode.style.padding = '0 0 0 0';
-    this.domNode.style.margin = '0 0 0 0';
-
     this.domNode.style.height = innerHeight + 'px';
     this.domNode.style.width = innerWidth + 'px';
   }
