@@ -12,6 +12,9 @@ export default class GameCanvas {
     // initially, trigger the event once canvas is initialized
     window.dispatchEvent(new Event('resize'));
 
+    // game data
+    this.entities = [];
+
     // game loop
     window.now = null;
     window.dt = null;
@@ -21,10 +24,15 @@ export default class GameCanvas {
     requestAnimationFrame(this.frame.bind(this));
   }
 
+  addEntity(entity) {
+    entity = Object.assign(entity, { ctx: this.ctx });
+    this.entities.push(entity);
+  }
+
   // handles the window object's resize event
   handleEvent({ target: { innerHeight, innerWidth }}) {
-    this.domNode.style.height = innerHeight + 'px';
-    this.domNode.style.width = innerWidth + 'px';
+    this.domNode.setAttribute('height', innerHeight);
+    this.domNode.setAttribute('width', innerWidth);
   }
 
   timestamp() {
@@ -41,10 +49,22 @@ export default class GameCanvas {
   }
 
   update() {
+    for(let i = 0; i < this.entities.length; i++) {
+      let entity = this.entities[0];
 
+      if(typeof entity.update === 'function') {
+        entity.update();
+      }
+    }
   }
 
   render() {
+    for(let i = 0; i < this.entities.length; i++) {
+      let entity = this.entities[0];
 
+      if(typeof entity.render === 'function') {
+        entity.render();
+      }
+    }
   }
 }
