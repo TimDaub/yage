@@ -10,9 +10,9 @@ var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 
 var config = {
-  entryFile: './src/app.js',
+  entryFile: './src/game.js',
   outputDir: './dist/',
-  outputFile: 'app.js'
+  outputFile: 'game.js'
 };
 
 // clean the output directory
