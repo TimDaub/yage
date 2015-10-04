@@ -1,0 +1,41 @@
+{
+    "parser": "babel-eslint",
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+    "rules": {
+        "new-cap": [2, {newIsCap: true, capIsNew: false}],
+        "quotes": [2, "single"],
+        "eol-last": [0],
+        "no-mixed-requires": [0],
+        "no-underscore-dangle": [0],
+        "global-strict": [2, "always"],
+        "no-trailing-spaces": [2, { skipBlankLines: true }],
+        "no-console": 0,
+        "camelcase": [2, {"properties": "never"}]
+    },
+    "globals": {
+        "Intercom": true,
+        "fetch": true,
+        "require": true,
+        "File": true
+    },
+    "ecmaFeatures": {
+        "jsx": 1,
+        "modules": 1,
+        "arrowFunctions",
+        "classes": 1,
+        "blockBindings": 1,
+        "defaultParams": 1,
+        "destructuring": 1,
+        "objectLiteralComputedProperties": 1,
+        "objectLiteralDuplicateProperties": 0,
+        "objectLiteralShorthandMethods": 1,
+        "objectLiteralShorthandProperties": 1,
+        "restParams": 1,
+        "spread": 1,
+        "superInFunctions": 1,
+        "templateStrings": 1
+    }
+}
