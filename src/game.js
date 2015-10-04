@@ -1,6 +1,6 @@
 'use strict';
 
-import GameCanvas from './models/canvas';
+import GameCanvas from './models/game_canvas';
 
 
 global.game = () => {
