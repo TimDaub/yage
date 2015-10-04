@@ -5,7 +5,11 @@ export default class GameCanvas {
     this.domNode = domNode;
     this.ctx = domNode.getContext('2d');
 
-    // when passing this, we can implement a method named `handleEvent`,
+    // canvas settings
+    this.height = 0;
+    this.width = 0;
+
+    // when passing `this`, we can implement a method named `handleEvent`,
     // that handles it
     window.addEventListener('resize', this, false);
 
@@ -25,14 +29,21 @@ export default class GameCanvas {
   }
 
   addEntity(entity) {
-    entity = Object.assign(entity, { ctx: this.ctx });
+    entity = Object.assign(entity, { canvas: this });
     this.entities.push(entity);
   }
 
   // handles the window object's resize event
   handleEvent({ target: { innerHeight, innerWidth }}) {
+    // the canvas element needs it's `attributes` set,
+    // instead part of his `style` attribute, as the canvas otherwise
+    // crops
     this.domNode.setAttribute('height', innerHeight);
     this.domNode.setAttribute('width', innerWidth);
+
+    // also set as properties to this class
+    this.height = innerHeight;
+    this.width = innerWidth;
   }
 
   timestamp() {
