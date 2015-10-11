@@ -74,7 +74,7 @@ export default class GameCanvas {
       let entity = this.entities[0];
 
       if(typeof entity.render === 'function') {
-        entity.render();
+        entity.render(this.ctx);
       }
     }
   }

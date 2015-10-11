@@ -7,7 +7,7 @@ import World from './models/world';
 
 global.game = () => {
   let gameCanvas = new GameCanvas(document.getElementById('canvas'));
-  let world = new World(50, 50, true);
+  let world = new World(20, 20);
 
   gameCanvas.addEntity(world);
 };

@@ -1,6 +1,6 @@
 'use strict';
 
-import Box from './box';
+import GrasTile from './gras_tile';
 
 
 export default class World {
@@ -11,7 +11,7 @@ export default class World {
 
       this.grid[i] = new Array(columns);
       for(let j = 0; j < this.grid[i].length; j++) {
-        this.grid[i][j] = new Box();
+        this.grid[i][j] = new GrasTile(i, j);
       }
 
     }
@@ -21,12 +21,17 @@ export default class World {
   }
 
   update() {
-    const { height, width } = this.canvas;
-    const boxHeight = height / this.rows;
-    const boxWidth = width / this.columns;
   }
 
-  render() {
+  render(ctx) {
+    for(let i = 0; i < this.grid.length; i++) {
+      for(let j = 0; j < this.grid[i].length; j++) {
+        const TILE = this.grid[i][j];
 
+        if(typeof TILE.render === 'function') {
+          TILE.render(ctx);
+        }
+      }
+    }
   }
 }
