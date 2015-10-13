@@ -1,24 +1,18 @@
 'use strict';
 
 export default class SpriteLoader {
-  constructor(spriteObj) {
-    this.spriteObj = spriteObj;
+  constructor(img, spriteMap) {
+    this.spriteImg = new Image();
+    this.spriteImg.src = img;
 
-    if(this.spriteObj && this.spriteObj.img) {
-      // load sprites from hd
-      this.spriteImg = new Image();
-      this.spriteImg.src = this.spriteObj.img;
-    } else {
-      throw new Error('SpriteObj needs to have a property "img"');
-    }
+    this.spriteMap = spriteMap;
   }
 
-  loadWith(name, dx = 0, dy = 0) {
+  loadWithName(name, dx = 0, dy = 0) {
     let sprite;
-    const { map } = this.spriteObj;
 
-    if(map && map[name]) {
-      sprite = map[name]
+    if(this.spriteMap && this.spriteMap[name]) {
+      sprite = this.spriteMap[name]
     } else {
       throw new Error('"' + name + '" does not exist in sprite map.');
     }
@@ -29,8 +23,8 @@ export default class SpriteLoader {
       sprite.y + sprite.y * sprite.height,
       sprite.width,
       sprite.height,
-      dx * sprite.width,
-      dy * sprite.height,
+      0,
+      0,
       sprite.width * 2,
       sprite.height * 2
     ];
