@@ -15,15 +15,15 @@ export default class GameCanvas {
     this.columns = 0;
     this.rows = 0;
 
+    // init view
+    this.view = null;
+
     // when passing `this`, we can implement a method named `handleEvent`
     // in this class that handles it
     window.addEventListener('resize', this, false);
 
     // initially, trigger the event once canvas is initialized
     window.dispatchEvent(new Event('resize'));
-
-    // init view
-    this.view = null;
 
     // game loop
     window.now = null;
