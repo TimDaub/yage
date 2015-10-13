@@ -1,23 +1,29 @@
 'use strict';
 
+import View from './view';
+
+
 export default class GameCanvas {
-  constructor(domNode) {
+  constructor(domNode, spriteSize) {
     this.domNode = domNode;
+    this.spriteSize = spriteSize;
     this.ctx = domNode.getContext('2d');
 
     // canvas settings
     this.height = 0;
     this.width = 0;
+    this.columns = 0;
+    this.rows = 0;
 
-    // when passing `this`, we can implement a method named `handleEvent`,
-    // that handles it
+    // when passing `this`, we can implement a method named `handleEvent`
+    // in this class that handles it
     window.addEventListener('resize', this, false);
 
     // initially, trigger the event once canvas is initialized
     window.dispatchEvent(new Event('resize'));
 
-    // game data
-    this.entities = [];
+    // init view
+    this.view = null;
 
     // game loop
     window.now = null;
@@ -26,11 +32,6 @@ export default class GameCanvas {
 
     // start render loop
     requestAnimationFrame(this.frame.bind(this));
-  }
-
-  addEntity(entity) {
-    entity = Object.assign(entity, { canvas: this });
-    this.entities.push(entity);
   }
 
   // handles the window object's resize event
@@ -44,6 +45,9 @@ export default class GameCanvas {
     // also set as properties to this class
     this.height = innerHeight;
     this.width = innerWidth;
+    this.columns = Math.ceil(innerHeight / this.spriteSize);
+    this.rows = Math.ceil(innerWidth / this.spriteSize);
+    this.view = Object.assign(new View(this.columns, this.rows), { canvas: this });
   }
 
   timestamp() {
@@ -60,22 +64,14 @@ export default class GameCanvas {
   }
 
   update() {
-    for(let i = 0; i < this.entities.length; i++) {
-      let entity = this.entities[0];
-
-      if(typeof entity.update === 'function') {
-        entity.update();
-      }
+    if(this.view && typeof this.view.update === 'function') {
+      this.view.update();
     }
   }
 
   render() {
-    for(let i = 0; i < this.entities.length; i++) {
-      let entity = this.entities[0];
-
-      if(typeof entity.render === 'function') {
-        entity.render(this.ctx);
-      }
+    if(this.view && typeof this.view.render === 'function') {
+      this.view.render(this.ctx);
     }
   }
 }

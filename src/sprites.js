@@ -6,7 +6,8 @@ import { GAME_CONSTANTS } from './statics/game_constants';
 
 
 export default (function() {
-  const { img, spriteMap, spriteSize } = GAME_CONSTANTS.spriteKits[GAME_CONSTANTS.spriteKit];
+  let spriteKit = GAME_CONSTANTS.spriteKits[GAME_CONSTANTS.spriteKit]
+  const { img, spriteMap, spriteSize } = spriteKit;
   const spriteLoader = new SpriteLoader(img, spriteMap);
 
   Object
@@ -21,5 +22,6 @@ export default (function() {
       spriteMap[spriteName] = sprite;
     });
 
-    return spriteMap;
+    spriteKit.spriteMap = spriteMap;
+    return spriteKit;
 })();

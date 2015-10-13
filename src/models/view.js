@@ -3,8 +3,8 @@
 import GrasTile from './gras_tile';
 
 
-export default class World {
-  constructor(columns, rows, debug = false) {
+export default class View {
+  constructor(columns, rows) {
     // initialize a multidimensional array as a data structure
     this.grid = new Array(rows);
     for(let i = 0; i < this.grid.length; i++) {
@@ -18,9 +18,6 @@ export default class World {
 
     this.columns = columns;
     this.rows = rows;
-  }
-
-  update() {
   }
 
   render(ctx) {
