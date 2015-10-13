@@ -4,10 +4,10 @@ import SPRITES from '../sprites';
 
 
 export default class Tile {
-  constructor(row, column) {
+  constructor(name, row, column) {
     this.row = row;
     this.column = column;
-    this.spriteObj = SPRITES['gras'];
+    this.spriteObj = SPRITES[name];
   }
 
   imgWithPos() {

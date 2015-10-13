@@ -8,7 +8,7 @@ export default class SpriteLoader {
     this.spriteMap = spriteMap;
   }
 
-  loadWithName(name, dx = 0, dy = 0) {
+  loadWithName(name) {
     let sprite;
 
     if(this.spriteMap && this.spriteMap[name]) {
