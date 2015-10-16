@@ -10,10 +10,22 @@ export const GAME_CONSTANTS = {
           x: 0,
           y: 24,
           neighbors: {
-            top: ['grasDirtTop'],
-            right: ['grasDirtRight'],
-            bottom: ['grasDirtBottom'],
-            left: ['grasDirtLeft']
+            top: [
+              'gras',
+              'grasDirtTop'
+            ],
+            right: [
+              'gras',
+              'grasDirtRight'
+            ],
+            bottom: [
+              'gras',
+              'grasDirtBottom'
+            ],
+            left: [
+              'gras',
+              'grasDirtLeft'
+            ]
           }
         },
         grasDirtTop: {
@@ -111,10 +123,11 @@ export const GAME_CONSTANTS = {
           neighbors: {
             top: ['dirt'],
             right: [
-              'grasDirtTop',
-              'grasDirtTopLeft'
+              'gras',
+              'grasDirtTop'
             ],
             bottom: [
+              'gras',
               'grasDirtLeft',
               'grasDirtBottomLeft'
             ],
@@ -126,6 +139,7 @@ export const GAME_CONSTANTS = {
           y: 27,
           neighbors: {
             top: [
+              'gras',
               'grasDirtRight',
               'grasDirtTopRight'
             ],
@@ -136,6 +150,7 @@ export const GAME_CONSTANTS = {
               'dirt'
             ],
             left: [
+            'gras',
             'grasDirtBottom',
             'grasDirtBottomRight'
             ]
@@ -166,21 +181,25 @@ export const GAME_CONSTANTS = {
           y: 25,
           neighbors: {
             top: [
+              'dirt',
               'grasDirtBottomLeft',
               'grasDirtBottom',
               'grasDirtBottomRight'
             ],
             right: [
+              'dirt',
               'grasDirtTopLeft',
               'grasDirtLeft',
               'grasDirtBottomLeft'
             ],
             bottom: [
+              'dirt',
               'grasDirtTopLeft',
               'grasDirtTop',
               'grasDirtTopRight'
             ],
             left: [
+              'dirt',
               'grasDirtTopRight',
               'grasDirtRight',
               'grasDirtBottomRight'
