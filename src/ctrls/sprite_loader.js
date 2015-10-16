@@ -25,8 +25,8 @@ export default class SpriteLoader {
       sprite.height,
       0,
       0,
-      sprite.width * 2,
-      sprite.height * 2
+      sprite.width,
+      sprite.height
     ];
   }
 }

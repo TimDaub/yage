@@ -17,7 +17,7 @@ export default (function() {
 
       sprite.width = spriteSize;
       sprite.height = spriteSize;
-      sprite.sprite = spriteLoader.loadWithName('gras');
+      sprite.sprite = spriteLoader.loadWithName(spriteName);
       
       spriteMap[spriteName] = sprite;
     });

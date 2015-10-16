@@ -6,5 +6,5 @@ import SPRITES from './sprites';
 
 
 global.game = () => {
-  let gameCanvas = new GameCanvas(document.getElementById('canvas'), SPRITES.spriteSize);
+  let gameCanvas = new GameCanvas(document.getElementById('canvas'), SPRITES);
 };

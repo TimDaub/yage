@@ -9,7 +9,7 @@ export const GAME_CONSTANTS = {
         gras: {
           x: 0,
           y: 24,
-          neightbors: {
+          neighbors: {
             top: ['grasDirtTop'],
             right: ['grasDirtRight'],
             bottom: ['grasDirtBottom'],
@@ -19,7 +19,7 @@ export const GAME_CONSTANTS = {
         grasDirtTop: {
           x: 1,
           y: 25,
-          neightbors: {
+          neighbors: {
             top: ['dirt'],
             right: [
               'grasDirtTopRight',
@@ -35,7 +35,7 @@ export const GAME_CONSTANTS = {
         grasDirtBottom: {
           x: 1,
           y: 27,
-          neightbors: {
+          neighbors: {
             top: ['gras'],
             right: [
               'grasDirtBottomRight',
@@ -51,7 +51,7 @@ export const GAME_CONSTANTS = {
         grasDirtRight: {
           x: 2,
           y: 26,
-          neightbors: {
+          neighbors: {
             top: [
               'grasDirtTopRight',
               'grasDirtRight'
@@ -71,7 +71,7 @@ export const GAME_CONSTANTS = {
         grasDirtLeft: {
           x: 0,
           y: 26,
-          neightbors: {
+          neighbors: {
             top: [
               'grasDirtLeft',
               'grasDirtTopLeft'
@@ -92,7 +92,7 @@ export const GAME_CONSTANTS = {
         grasDirtTopRight: {
           x: 2,
           y: 25,
-          neightbors: {
+          neighbors: {
             top: ['dirt'],
             right: ['dirt'],
             bottom: [
@@ -108,7 +108,7 @@ export const GAME_CONSTANTS = {
         grasDirtTopLeft: {
           x: 0,
           y: 25,
-          neightbors: {
+          neighbors: {
             top: ['dirt'],
             right: [
               'grasDirtTop',
@@ -124,7 +124,7 @@ export const GAME_CONSTANTS = {
         grasDirtBottomRight: {
           x: 2,
           y: 27,
-          neightbors: {
+          neighbors: {
             top: [
               'grasDirtRight',
               'grasDirtTopRight'
@@ -143,8 +143,8 @@ export const GAME_CONSTANTS = {
         },
         grasDirtBottomLeft: {
           x: 0,
-          y: 27,
-          neightbors: {
+          y: 26,
+          neighbors: {
             top: [
               'grasDirtLeft',
               'grasDirtTopLeft'
@@ -162,9 +162,9 @@ export const GAME_CONSTANTS = {
           }
         },
         dirt: {
-          x: 12,
+          x: 14,
           y: 25,
-          neightbors: {
+          neighbors: {
             top: [
               'grasDirtBottomLeft',
               'grasDirtBottom',

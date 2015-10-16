@@ -1,12 +1,13 @@
 'use strict';
 
+import World from './world';
 import View from './view';
 
 
 export default class GameCanvas {
-  constructor(domNode, spriteSize) {
+  constructor(domNode, sprites) {
     this.domNode = domNode;
-    this.spriteSize = spriteSize;
+    this.sprites = sprites;
     this.ctx = domNode.getContext('2d');
 
     // canvas settings
@@ -15,7 +16,8 @@ export default class GameCanvas {
     this.columns = 0;
     this.rows = 0;
 
-    // init view
+    // init world
+    this.world = null;
     this.view = null;
 
     // when passing `this`, we can implement a method named `handleEvent`
@@ -45,9 +47,13 @@ export default class GameCanvas {
     // also set as properties to this class
     this.height = innerHeight;
     this.width = innerWidth;
-    this.columns = Math.ceil(innerHeight / this.spriteSize);
-    this.rows = Math.ceil(innerWidth / this.spriteSize);
-    this.view = Object.assign(new View(this.columns, this.rows), { canvas: this });
+    this.columns = Math.ceil(innerHeight / this.sprites.spriteSize);
+    this.rows = Math.ceil(innerWidth / this.sprites.spriteSize);
+
+    if(!this.world) {
+      this.world = new World(this.columns, this.rows, this.sprites);
+      this.view = Object.assign(new View(this.columns, this.rows, this.world), { canvas: this });
+    }
   }
 
   timestamp() {
