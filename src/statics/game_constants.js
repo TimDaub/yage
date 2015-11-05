@@ -37,7 +37,7 @@ export const GAME_CONSTANTS = {
               'grasDirtTopRight',
               'grasDirtTop'
             ],
-            bottom: ['gras'],
+            bottom: ['gras', 'grasDirtBottom'],
             left: [
               'grasDirtTopLeft',
               'grasDirtTop'
@@ -69,7 +69,8 @@ export const GAME_CONSTANTS = {
               'grasDirtRight'
             ],
             right: [
-              'dirt'
+              'dirt',
+              'grasDirtLeft'
             ],
             bottom: [
               'grasDirtBottomRight',
@@ -93,6 +94,7 @@ export const GAME_CONSTANTS = {
               'grasDirtRight'
             ],
             bottom: [
+              'gras',
               'grasDirtLeft',
               'grasDirtBottomLeft'
             ],
@@ -106,7 +108,7 @@ export const GAME_CONSTANTS = {
           y: 25,
           neighbors: {
             top: ['dirt'],
-            right: ['dirt'],
+            right: ['dirt', 'grasDirtTopLeft', 'grasDirtLeft'],
             bottom: [
               'grasDirtRight',
               'grasDirtBottomRight'
@@ -132,7 +134,7 @@ export const GAME_CONSTANTS = {
               'grasDirtLeft',
               'grasDirtBottomLeft'
             ],
-            left: ['dirt']
+            left: ['dirt', 'grasDirtTopRight', 'grasDirtRight']
           }
         },
         grasDirtBottomRight: {
@@ -145,7 +147,9 @@ export const GAME_CONSTANTS = {
               'grasDirtTopRight'
             ],
             right: [
-              'dirt'
+              'dirt',
+              'grasDirtBottomLeft',
+              'grasDirtLeft'
             ],
             bottom: [
               'dirt'
@@ -173,7 +177,9 @@ export const GAME_CONSTANTS = {
               'dirt'
             ],
             left: [
-              'dirt'
+              'dirt',
+              'grasDirtBottomRight',
+              'grasDirtRight'
             ]
           }
         },
@@ -205,6 +211,16 @@ export const GAME_CONSTANTS = {
               'grasDirtRight',
               'grasDirtBottomRight'
             ],
+          }
+        },
+        pink: {
+          x: 0,
+          y: 0,
+          neighbors: {
+            top: [],
+            right: [],
+            bottom: [],
+            left: []
           }
         }
       }

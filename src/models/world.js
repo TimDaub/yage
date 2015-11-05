@@ -16,6 +16,7 @@ export default class World {
     this.grid = new Array(this.columns);
     for(let col = 0; col < this.columns; col++) {
 
+      const originalCol = col;
       this.grid[col] = new Array(this.rows);
       for(let row = 0; row < this.rows; row++) {
         let spriteName;
@@ -34,11 +35,13 @@ export default class World {
           const { neighbors: { right } } = leftNeighbor;
           const { neighbors: { bottom } } = topNeighbor;
           const intersectedList = intersectLists(right, bottom);
-          console.log('leftNeighbor: <<<' + right + '>>>', 'topNeighbor: <<<' + bottom + '>>>', intersectedList);
-          // if(intersectedList.length === 0) {
-          //   console.log(leftNeighbor.spriteName, topNeighbor.spriteName);
+
+          // if(!intersectedList.length) {
+          //   col = col ? col - 2 : col;
+          //   break;
           // }
-          spriteName = pickRandomFromList(intersectedList) || 'gras';
+
+          spriteName = pickRandomFromList(intersectedList) || 'pink';
         }
 
         const sprite = spriteMap[spriteName];
