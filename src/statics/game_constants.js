@@ -124,7 +124,8 @@ export const GAME_CONSTANTS = {
             top: ['dirt'],
             right: [
               'gras',
-              'grasDirtTop'
+              'grasDirtTop',
+              'grasDirtTopRight'
             ],
             bottom: [
               'gras',

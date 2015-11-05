@@ -34,10 +34,11 @@ export default class World {
           const { neighbors: { right } } = leftNeighbor;
           const { neighbors: { bottom } } = topNeighbor;
           const intersectedList = intersectLists(right, bottom);
-          if(intersectedList.length === 0) {
-            console.log(leftNeighbor.spriteName, topNeighbor.spriteName);
-          }
-          spriteName = pickRandomFromList(intersectedList) || 'dirt';
+          console.log('leftNeighbor: <<<' + right + '>>>', 'topNeighbor: <<<' + bottom + '>>>', intersectedList);
+          // if(intersectedList.length === 0) {
+          //   console.log(leftNeighbor.spriteName, topNeighbor.spriteName);
+          // }
+          spriteName = pickRandomFromList(intersectedList) || 'gras';
         }
 
         const sprite = spriteMap[spriteName];
