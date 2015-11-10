@@ -19,3 +19,12 @@ export function intersectLists(a, b) {
         if (b.indexOf(e) !== -1) return true;
     });
 }
+
+export function gen2DList(columns, rows) {
+  let l = new Array(columns);
+  for(let ol = 0; ol < l.length; ol++) {
+    l[ol] = new Array(rows);
+  }
+
+  return l;
+}
