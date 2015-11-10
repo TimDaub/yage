@@ -1,55 +1,68 @@
 'use strict';
 
 import Tile from './tile';
-import { pickRandomFromList, intersectLists } from '../utils/general_utils';
+import { generateRandomNumberInRangeOf } from '../utils/general_utils';
 
 
 export default class World {
   constructor(columns, rows, sprites) {
     this.columns = columns;
     this.rows = rows;
+    this.sprites = sprites;
+    this.genBaseLayer();
+    this.genSeed();
+    this.growGras();
+  }
 
-    const { spriteMap } = sprites;
-    const spriteNames = Object.keys(spriteMap);
-
+  genBaseLayer() {
     // initialize a multidimensional array as a data structure
     this.grid = new Array(this.columns);
     for(let col = 0; col < this.columns; col++) {
-
-      const originalCol = col;
       this.grid[col] = new Array(this.rows);
       for(let row = 0; row < this.rows; row++) {
-        let spriteName;
-        const leftNeighbor = row ? this.grid[col][row - 1] : null;
-        const topNeighbor = col ? this.grid[col - 1][row] : null;
 
-        if(!topNeighbor && !leftNeighbor) {
-          spriteName = pickRandomFromList(spriteNames);
-        } else if(!topNeighbor && leftNeighbor) {
-          const { neighbors: { right } } = leftNeighbor;
-          spriteName = pickRandomFromList(right);
-        } else if(topNeighbor && !leftNeighbor) {
-          const { neighbors: { bottom } } = topNeighbor;
-          spriteName = pickRandomFromList(bottom);
-        } else {
-          const { neighbors: { right } } = leftNeighbor;
-          const { neighbors: { bottom } } = topNeighbor;
-          const intersectedList = intersectLists(right, bottom);
-
-          // if(!intersectedList.length) {
-          //   col = col ? col - 2 : col;
-          //   break;
-          // }
-
-          spriteName = pickRandomFromList(intersectedList) || 'pink';
-        }
-
-        const sprite = spriteMap[spriteName];
-        const tile = new Tile(row, col, sprite.height, sprite.width, sprite.neighbors, sprite.sprite, spriteName);
+        const sprite = this.sprites.spriteMap['dirt'];
+        const tile = new Tile(row, col, sprite.height, sprite.width, sprite.neighbors, sprite.sprite, 'dirt');
 
         this.grid[col][row] = tile;
       }
-
     }
+  }
+
+  genSeed() {
+    for(let col = 0; col < this.columns; col++) {
+      for(let row = 0; row < this.rows; row++) {
+        if(Math.random() > 0.95) {
+          const sprite = this.sprites.spriteMap['gras'];
+          const tile = new Tile(row, col, sprite.height, sprite.width, sprite.neighbors, sprite.sprite, 'gras');
+
+          this.grid[col][row] = tile;
+        }
+      }
+    }
+  }
+
+  growGras() {
+    let mapToGrow = JSON.parse(JSON.stringify(this.grid));
+    const sprite = this.sprites.spriteMap['gras'];
+
+    for(let col = 0; col < this.columns; col++) {
+      for(let row = 0; row < this.rows; row++) {
+        const tile = this.grid[col][row];
+        const grasTileArguments = [sprite.height, sprite.width, sprite.neighbors, sprite.sprite, 'gras'];
+
+        if(tile.spriteName === 'gras') {
+          row                                             ? mapToGrow[col][row - 1]     = new Tile(row - 1, col, ...grasTileArguments)     : null;
+          col < this.columns - 1 && row                   ? mapToGrow[col + 1][row - 1] = new Tile(row - 1, col + 1, ...grasTileArguments) : null;
+          col < this.columns - 1                          ? mapToGrow[col + 1][row]     = new Tile(row, col + 1, ...grasTileArguments)     : null;
+          col < this.columns - 1 && row < this.rows - 1   ? mapToGrow[col + 1][row + 1] = new Tile(row + 1, col + 1, ...grasTileArguments) : null;
+          row < this.rows - 1                             ? mapToGrow[col][row + 1]     = new Tile(row + 1, col, ...grasTileArguments)     : null;
+          col && row < this.rows - 1                      ? mapToGrow[col - 1][row + 1] = new Tile(row + 1, col - 1, ...grasTileArguments) : null;
+          col                                             ? mapToGrow[col - 1][row]     = new Tile(row, col - 1, ...grasTileArguments)     : null;
+          col && row                                      ? mapToGrow[col - 1][row - 1] = new Tile(row - 1, col - 1, ...grasTileArguments) : null;
+        }
+      }
+    }
+    this.grid = mapToGrow;
   }
 }
