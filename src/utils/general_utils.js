@@ -25,6 +25,31 @@ export function gen2DList(columns, rows) {
   for(let ol = 0; ol < l.length; ol++) {
     l[ol] = new Array(rows);
   }
-
   return l;
+}
+
+export function spiralNeighbors(matrix, x, y) {
+  const neighborPositions = [
+    [x, y - 1],
+    [x + 1, y - 1],
+    [x + 1, y],
+    [x + 1, y + 1],
+    [x, y + 1],
+    [x - 1, y + 1],
+    [x - 1, y],
+    [x - 1, y - 1],
+  ];
+
+  let neighbors = [];
+  for(let pos of neighborPositions) {
+    try {
+      neighbors.push(matrix[pos[0]][pos[1]])
+    } catch (e) {
+      if (!(e instanceof TypeError)) {
+        console.log(e);
+      }
+    }
+  }
+
+  return neighbors.filter((el) => el !== undefined);
 }
