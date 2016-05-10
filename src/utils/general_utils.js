@@ -29,6 +29,14 @@ export function gen2DList(columns, rows) {
 }
 
 export function spiralNeighbors(matrix, x, y) {
+  // That's how it works!
+  //
+  //   v----->
+  //   x x x |
+  // ^ x x x |
+  // | x x x v
+  // <--------
+  //
   const neighborPositions = [
     [x, y - 1],
     [x + 1, y - 1],

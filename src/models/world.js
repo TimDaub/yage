@@ -45,15 +45,15 @@ export default class World {
 
   growGras() {
     const sprite = this.sprites.spriteMap['gras'];
+    const grasTileArguments = [sprite.height, sprite.width, sprite.neighbors, sprite.sprite, 'gras'];
 
     let mapToGrow = gen2DList(this.columns, this.rows);
     for(let col = 0; col < this.columns; col++) {
       for(let row = 0; row < this.rows; row++) {
         const tile = this.grid[col][row];
-        const grasTileArguments = [sprite.height, sprite.width, sprite.neighbors, sprite.sprite, 'gras'];
 
         if(tile.spriteName === 'gras') {
-          let neighbors = spiralNeighbors(this.grid, col, row);
+          const neighbors = spiralNeighbors(this.grid, col, row);
           for(let neighbor of neighbors) {
             mapToGrow[neighbor.column][neighbor.row] = new Tile(neighbor.row, neighbor.column, ...grasTileArguments);
           }
@@ -66,9 +66,21 @@ export default class World {
   }
 
   antiAliasSingleSpots() {
+    const dirtMiddle = this.sprites.spriteMap['dirtMiddle'];
+    const dirtMiddleArguments = [dirtMiddle.height, dirtMiddle.width, dirtMiddle.neighbors, dirtMiddle.sprite, 'dirtMiddle'];
+
     for(let col = 0; col < this.columns; col++) {
       for(let row = 0; row < this.rows; row++) {
+        const tile = this.grid[col][row];
 
+        if (tile.spriteName === 'dirt') { 
+          const neighbors = spiralNeighbors(this.grid, col, row)
+            .filter((tile, i) => i % 2 === 0 && tile.spriteName === 'gras');
+          if (neighbors.length === 4) {
+            this.grid[col][row] = new Tile(row, col, ...dirtMiddleArguments);
+            console.log(col, row, spiralNeighbors(this.grid, col, row));
+          }
+        }
       }
     }
   }

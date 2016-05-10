@@ -222,6 +222,16 @@ export const GAME_CONSTANTS = {
             bottom: [],
             left: []
           }
+        },
+        dirtMiddle: {
+          x: 13,
+          y: 27,
+          neighbors: {
+            top: [],
+            right: [],
+            bottom: [],
+            left: []
+          }
         }
       }
     }
